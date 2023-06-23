@@ -11,6 +11,8 @@ const mongoose = require("mongoose");
 const { logger, logEvents } = require("./middleware/logger");
 const PORT = process.env.PORT || 3500;
 
+console.log(process.env.NODE_ENV)
+
 connectDB();
 
 app.use(logger);
