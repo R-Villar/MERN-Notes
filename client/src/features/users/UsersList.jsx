@@ -9,7 +9,6 @@ export const UsersList = () => {
 	if (isError) {
 		return <p className='errmsg'>{error?.data?.message}</p>;
 	}
-  console.log(users)
 
 	if (isSuccess) {
 		const { ids } = users;

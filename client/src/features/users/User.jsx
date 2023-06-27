@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { selectUserById } from "./usersApiSlice";
+import { PropTypes } from "prop-types";
 
-// eslint-disable-next-line react/prop-types
 export const User = ({ userId }) => {
 	const user = useSelector((state) => selectUserById(state, userId));
 
@@ -30,4 +30,8 @@ export const User = ({ userId }) => {
 			</tr>
 		);
 	} else return null;
+};
+
+User.propTypes = {
+	userId: PropTypes.string,
 };
