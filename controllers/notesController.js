@@ -50,11 +50,11 @@ const createNewNote = asyncHandler(async (req, res) => {
 		// Created
 		return res.status(201).json({ message: "New note created" });
 	} else {
-		res.status(400).json({ message: "invalid note data received" });
+		return res.status(400).json({ message: "Invalid note data received" });
 	}
 });
 
-// @desc Update note
+// @desc Update a note
 // @route PATCH /notes
 // @access Private
 const updateNote = asyncHandler(async (req, res) => {
@@ -69,7 +69,7 @@ const updateNote = asyncHandler(async (req, res) => {
 	const note = await Note.findById(id).exec();
 
 	if (!note) {
-		return res._construct(400).json({ message: "Note not found" });
+		return res.status(400).json({ message: "Note not found" });
 	}
 
 	// Check for duplicate title
@@ -90,7 +90,7 @@ const updateNote = asyncHandler(async (req, res) => {
 	res.json(`'${updatedNote.title}' updated`);
 });
 
-// @desc Delete note
+// @desc Delete a note
 // @route DELETE /notes
 // @access Private
 const deleteNote = asyncHandler(async (req, res) => {
@@ -98,7 +98,7 @@ const deleteNote = asyncHandler(async (req, res) => {
 
 	// Confirm data
 	if (!id) {
-		return res.status(400).json({ message: "Note ID require" });
+		return res.status(400).json({ message: "Note ID required" });
 	}
 
 	// Confirm note exists to delete
@@ -115,4 +115,9 @@ const deleteNote = asyncHandler(async (req, res) => {
 	res.json(reply);
 });
 
-module.exports = { getAllNotes, createNewNote, updateNote, deleteNote };
+module.exports = {
+	getAllNotes,
+	createNewNote,
+	updateNote,
+	deleteNote,
+};
