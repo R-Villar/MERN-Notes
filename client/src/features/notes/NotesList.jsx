@@ -2,12 +2,17 @@ import { useGetNotesQuery } from "./notesApiSlice";
 import { Note } from "./Note";
 
 export const NotesList = () => {
-	const { data: notes, isLoading, isSuccess, isError, error } = useGetNotesQuery(undefined, {
+	const {
+		data: notes,
+		isLoading,
+		isSuccess,
+		isError,
+		error,
+	} = useGetNotesQuery("notesList", {
 		pollingInterval: 15000,
 		refetchOnFocus: true,
 		refetchOnMountOrArgChange: true,
-	}
-  );
+	});
 
 	if (isLoading) return <p>Loading...</p>;
 
