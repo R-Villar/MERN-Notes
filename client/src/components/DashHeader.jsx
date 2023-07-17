@@ -1,16 +1,16 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faFileCirclePlus,
-	faFilePen,
-	faUserGear,
-	faUserPlus,
-	faRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
 import { useSendLogoutMutation } from "../features/auth/authApiSlice";
 import { useAuth } from "../hooks/useAuth";
-import PulseLoader from "react-spinners/PulseLoader";
+import CircularProgress from "@mui/material/CircularProgress";
+import LogoutIcon from "@mui/icons-material/Logout";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 
 const DASH_REGEX = /^\/dash(\/)?$/;
 const NOTES_REGEX = /^\/dash\/notes(\/)?$/;
@@ -40,18 +40,34 @@ export const DashHeader = () => {
 	let newNoteButton = null;
 	if (NOTES_REGEX.test(pathname)) {
 		newNoteButton = (
-			<button className='icon-button' title='New Note' onClick={onNewNoteClicked}>
-				<FontAwesomeIcon icon={faFileCirclePlus} />
-			</button>
+			<IconButton
+				sx={{
+					color: "#fff",
+					"&:hover": { transform: "scale(1.2)" },
+					backgroundColor: "transparent",
+				}}
+				title='New Note'
+				onClick={onNewNoteClicked}
+			>
+				<NoteAddIcon sx={{ fontSize: 40 }} />
+			</IconButton>
 		);
 	}
 
 	let newUserButton = null;
 	if (USERS_REGEX.test(pathname)) {
 		newUserButton = (
-			<button className='icon-button' title='New User' onClick={onNewUserClicked}>
-				<FontAwesomeIcon icon={faUserPlus} />
-			</button>
+			<IconButton
+				sx={{
+					color: "#fff",
+					"&:hover": { transform: "scale(1.2)" },
+					backgroundColor: "transparent",
+				}}
+				title='New User'
+				onClick={onNewUserClicked}
+			>
+				<PersonAddIcon sx={{ fontSize: 40 }} />
+			</IconButton>
 		);
 	}
 
@@ -59,9 +75,17 @@ export const DashHeader = () => {
 	if (isManager || isAdmin) {
 		if (!USERS_REGEX.test(pathname) && pathname.includes("/dash")) {
 			userButton = (
-				<button className='icon-button' title='Users' onClick={onUsersClicked}>
-					<FontAwesomeIcon icon={faUserGear} />
-				</button>
+				<IconButton
+					sx={{
+						color: "#fff",
+						"&:hover": { transform: "scale(1.2)" },
+						backgroundColor: "transparent",
+					}}
+					title='Users'
+					onClick={onUsersClicked}
+				>
+					<ManageAccountsIcon sx={{ fontSize: 40 }} />
+				</IconButton>
 			);
 		}
 	}
@@ -69,15 +93,23 @@ export const DashHeader = () => {
 	let notesButton = null;
 	if (!NOTES_REGEX.test(pathname) && pathname.includes("/dash")) {
 		notesButton = (
-			<button className='icon-button' title='Notes' onClick={onNotesClicked}>
-				<FontAwesomeIcon icon={faFilePen} />
-			</button>
+			<IconButton
+				sx={{
+					color: "#fff",
+					"&:hover": { transform: "scale(1.2)" },
+					backgroundColor: "transparent",
+				}}
+				title='Notes'
+				onClick={onNotesClicked}
+			>
+				<EditNoteIcon sx={{ fontSize: 40 }} />
+			</IconButton>
 		);
 	}
 
 	const logoutButton = (
 		<button className='icon-button' title='Logout' onClick={sendLogout}>
-			<FontAwesomeIcon icon={faRightFromBracket} />
+			<LogoutIcon sx={{ fontSize: 40 }} />
 		</button>
 	);
 
@@ -85,7 +117,7 @@ export const DashHeader = () => {
 
 	let buttonContent;
 	if (isLoading) {
-		buttonContent = <PulseLoader color={"#FFF"} />;
+		buttonContent = <CircularProgress color='inherit' />;
 	} else {
 		buttonContent = (
 			<>
@@ -100,7 +132,7 @@ export const DashHeader = () => {
 
 	return (
 		<>
-			<p className={errClass}> {error?.data?.message}</p>
+			<Typography className={errClass}> {error?.data?.message}</Typography>
 
 			<header className='dash-header'>
 				<div className={`dash-header__container ${dashClass}`}>
@@ -110,6 +142,7 @@ export const DashHeader = () => {
 					<nav className='dash-header__nav'>{buttonContent}</nav>
 				</div>
 			</header>
+			<Divider color='#fff' />
 		</>
 	);
 };

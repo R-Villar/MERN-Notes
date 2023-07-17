@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useUpdateUserMutation, useDeleteUserMutation } from "./usersApiSlice";
+import SaveIcon from "@mui/icons-material/Save";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { ROLES } from "../../config/roles";
 import { PropTypes } from "prop-types";
 
@@ -95,17 +96,25 @@ export const EditUserForm = ({ user }) => {
 				<div className='form__title-row'>
 					<h2>Edit User</h2>
 					<div className='form__action-buttons'>
-						<button
+						<IconButton
+							disableRipple
+							aria-label='save'
 							className='icon-button'
 							title='Save'
 							onClick={onSaveUserClicked}
 							disabled={!canSave}
 						>
-							<FontAwesomeIcon icon={faSave} />
-						</button>
-						<button className='icon-button' title='Delete' onClick={onDeleteUserClicked}>
-							<FontAwesomeIcon icon={faTrashCan} />
-						</button>
+							<SaveIcon color='primary' sx={{ fontSize: 40 }} />
+						</IconButton>
+						<IconButton
+							disableRipple
+							aria-label='delete'
+							className='icon-button'
+							title='Delete'
+							onClick={onDeleteUserClicked}
+						>
+							<DeleteIcon color='warning' sx={{ fontSize: 40 }} />
+						</IconButton>
 					</div>
 				</div>
 				<label className='form__label' htmlFor='username'>

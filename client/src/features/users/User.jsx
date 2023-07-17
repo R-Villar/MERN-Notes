@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 import { useGetUsersQuery } from "./usersApiSlice";
 import { PropTypes } from "prop-types";
@@ -26,9 +26,16 @@ export const User = memo(function User({ userId }) {
 				<td className={`table__cell ${cellStatus}`}>{user.username}</td>
 				<td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
 				<td className={`table__cell ${cellStatus}`}>
-					<button className='icon-button table__button' onClick={handleEdit}>
-						<FontAwesomeIcon icon={faPenToSquare} />
-					</button>
+					<IconButton
+						disableRipple
+						size='large'
+						title='edit'
+						aria-label='edit'
+						className='icon-button table__button'
+						onClick={handleEdit}
+					>
+						<EditIcon fontSize='inherit'  />
+					</IconButton>
 				</td>
 			</tr>
 		);
