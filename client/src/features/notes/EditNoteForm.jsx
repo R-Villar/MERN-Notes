@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import { useUpdateNoteMutation, useDeleteNoteMutation } from "./notesApiSlice";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import SaveIcon from "@mui/icons-material/Save";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../../hooks/useAuth";
 
 export const EditNoteForm = ({ note, users }) => {
@@ -82,9 +83,15 @@ export const EditNoteForm = ({ note, users }) => {
 	let deleteButton = null;
 	if (isManager || isAdmin) {
 		deleteButton = (
-			<button className='icon-button' title='Delete' onClick={onDeleteNoteClicked}>
-				<FontAwesomeIcon icon={faTrashCan} />
-			</button>
+			<IconButton
+				disableRipple
+				aria-label='delete'
+				className='icon-button'
+				title='Delete'
+				onClick={onDeleteNoteClicked}
+			>
+				<DeleteIcon color='warning' sx={{ fontSize: 40 }} />
+			</IconButton>
 		);
 	}
 
@@ -96,14 +103,16 @@ export const EditNoteForm = ({ note, users }) => {
 				<div className='form__title-row'>
 					<h2>Edit Note #{note.ticket}</h2>
 					<div className='form__action-buttons'>
-						<button
+						<IconButton
+							disableRipple
+							aria-label='save'
 							className='icon-button'
 							title='Save'
 							onClick={onSaveNoteClicked}
 							disabled={!canSave}
 						>
-							<FontAwesomeIcon icon={faSave} />
-						</button>
+							<SaveIcon color='primary' sx={{ fontSize: 40 }} />
+						</IconButton>
 						{deleteButton}
 					</div>
 				</div>
