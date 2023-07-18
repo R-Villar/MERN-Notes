@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAddNewNoteMutation } from "./notesApiSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import SaveIcon from "@mui/icons-material/Save";
+import IconButton from "@mui/material/IconButton";
 import { PropTypes } from "prop-types";
 
 export const NewNoteForm = ({ users }) => {
@@ -57,9 +57,15 @@ export const NewNoteForm = ({ users }) => {
 				<div className='form__title-row'>
 					<h2>New Note</h2>
 					<div className='form__action-buttons'>
-						<button className='icon-button' title='Save' disabled={!canSave}>
-							<FontAwesomeIcon icon={faSave} />
-						</button>
+						<IconButton
+							disableRipple
+							aria-label='save'
+							className='icon-button'
+							title='Save'
+							disabled={!canSave}
+						>
+							<SaveIcon color='primary' sx={{ fontSize: 40 }} />
+						</IconButton>
 					</div>
 				</div>
 				<label className='form__label' htmlFor='title'>
