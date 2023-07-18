@@ -8,6 +8,9 @@ export const Public = () => {
 					Welcome to <span className='nowrap'>Daniel&apos;s Repair Shop!</span>
 				</h1>
 			</header>
+            <footer>
+				<Link to='/login'>Employee Login</Link>
+			</footer>
 			<main className='public__main'>
 				<p>
 					Located in New York City, Daniel Repair Shop provides a trained staff ready to meet your
@@ -25,9 +28,9 @@ export const Public = () => {
 				<br />
 				<p>Owner: Daniel</p>
 			</main>
-			<footer>
-				<Link to='/login'>Employee Login</Link>
-			</footer>
+			<div className='public__img'>
+				<img className='img' src='https://source.unsplash.com/random/800x600/?computer,repair' />
+			</div>
 		</section>
 	);
 };
