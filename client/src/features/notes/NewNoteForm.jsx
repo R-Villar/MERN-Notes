@@ -1,40 +1,40 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAddNewNoteMutation } from "./notesApiSlice";
-import SaveIcon from "@mui/icons-material/Save";
-import IconButton from "@mui/material/IconButton";
-import { PropTypes } from "prop-types";
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAddNewNoteMutation } from "./notesApiSlice"
+import SaveIcon from "@mui/icons-material/Save"
+import IconButton from "@mui/material/IconButton"
+import { PropTypes } from "prop-types"
 
 export const NewNoteForm = ({ users }) => {
-	const [addNewNote, { isLoading, isSuccess, isError, error }] = useAddNewNoteMutation();
+	const [addNewNote, { isLoading, isSuccess, isError, error }] = useAddNewNoteMutation()
 
-	const navigate = useNavigate();
+	const navigate = useNavigate()
 
-	const [title, setTitle] = useState("");
-	const [text, setText] = useState("");
-	const [userId, setUserId] = useState(users[0].id);
+	const [title, setTitle] = useState("")
+	const [text, setText] = useState("")
+	const [userId, setUserId] = useState(users[0].id)
 
 	useEffect(() => {
 		if (isSuccess) {
-			setTitle("");
-			setText("");
-			setUserId("");
-			navigate("/dash/notes");
+			setTitle("")
+			setText("")
+			setUserId("")
+			navigate("/dash/notes")
 		}
-	}, [isSuccess, navigate]);
+	}, [isSuccess, navigate])
 
-	const onTitleChanged = (e) => setTitle(e.target.value);
-	const onTextChanged = (e) => setText(e.target.value);
-	const onUserIdChanged = (e) => setUserId(e.target.value);
+	const onTitleChanged = (e) => setTitle(e.target.value)
+	const onTextChanged = (e) => setText(e.target.value)
+	const onUserIdChanged = (e) => setUserId(e.target.value)
 
-	const canSave = [title, text, userId].every(Boolean) && !isLoading;
+	const canSave = [title, text, userId].every(Boolean) && !isLoading
 
 	const onSaveNoteClicked = async (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		if (canSave) {
-			await addNewNote({ user: userId, title, text });
+			await addNewNote({ user: userId, title, text })
 		}
-	};
+	}
 
 	const options = users.map((user) => {
 		return (
@@ -42,12 +42,12 @@ export const NewNoteForm = ({ users }) => {
 				{" "}
 				{user.username}
 			</option>
-		);
-	});
+		)
+	})
 
-	const errClass = isError ? "errmsg" : "offscreen";
-	const validTitleClass = !title ? "form__input--incomplete" : "";
-	const validTextClass = !text ? "form__input--incomplete" : "";
+	const errClass = isError ? "errmsg" : "offscreen"
+	const validTitleClass = !title ? "form__input--incomplete" : ""
+	const validTextClass = !text ? "form__input--incomplete" : ""
 
 	return (
 		<>
@@ -58,6 +58,7 @@ export const NewNoteForm = ({ users }) => {
 					<h2>New Note</h2>
 					<div className='form__action-buttons'>
 						<IconButton
+							type='submit'
 							disableRipple
 							aria-label='save'
 							className='icon-button'
@@ -106,9 +107,9 @@ export const NewNoteForm = ({ users }) => {
 				</select>
 			</form>
 		</>
-	);
-};
+	)
+}
 
 NewNoteForm.propTypes = {
 	users: PropTypes.array,
-};
+}
