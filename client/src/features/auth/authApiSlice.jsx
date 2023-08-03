@@ -15,10 +15,11 @@ export const authApiSlice = apiSlice.injectEndpoints({
 				url: "/auth/logout",
 				method: "POST",
 			}),
+			// eslint-disable-next-line no-unused-vars
 			async onQueryStarted(arg, { dispatch, queryFulfilled }) {
 				try {
-					const { data } = await queryFulfilled;
-					console.log(data);
+					// const { data } = await queryFulfilled;
+					// console.log(data);
 					dispatch(logOut());
 					setTimeout(() => {
 						dispatch(apiSlice.util.resetApiState());
