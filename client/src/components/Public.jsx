@@ -28,9 +28,9 @@ export const Public = () => {
 				<br />
 				<p>Owner: Daniel</p>
 			</main>
-			<div className='public__img'>
+			{/* <div className='public__img'>
 				<img className='img' src='https://source.unsplash.com/random/800x600/?computer,repair' />
-			</div>
+			</div> */}
 		</section>
 	);
 };
