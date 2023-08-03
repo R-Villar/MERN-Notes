@@ -1,3 +1,3 @@
-const allowedOrigins = ["https://technotes-gilt.vercel.app"]
+const allowedOrigins = ["https://notes-t5qx.onrender.com/"]
 
 module.exports = allowedOrigins
