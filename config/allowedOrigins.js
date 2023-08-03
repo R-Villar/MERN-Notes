@@ -1,3 +1,3 @@
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = ["https://technotes-gilt.vercel.app"]
 
-module.exports = allowedOrigins;
+module.exports = allowedOrigins
