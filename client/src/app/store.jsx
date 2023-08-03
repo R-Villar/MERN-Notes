@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { apiSlice } from "./api/apiSlice";
-import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import authReducer from "../features/auth/authSlice";
+import { configureStore } from "@reduxjs/toolkit"
+import { apiSlice } from "./api/apiSlice"
+import { setupListeners } from "@reduxjs/toolkit/dist/query"
+import authReducer from "../features/auth/authSlice"
 
 export const store = configureStore({
 	reducer: {
@@ -9,7 +9,7 @@ export const store = configureStore({
 		auth: authReducer,
 	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
-	devTools: true,
-});
+	devTools: false,
+})
 
-setupListeners(store.dispatch);
+setupListeners(store.dispatch)
