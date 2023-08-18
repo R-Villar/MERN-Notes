@@ -18,7 +18,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
 			// eslint-disable-next-line no-unused-vars
 			async onQueryStarted(arg, { dispatch, queryFulfilled }) {
 				try {
-					// const { data } = await queryFulfilled;
+					// const { data } = 
+                    await queryFulfilled;
 					// console.log(data);
 					dispatch(logOut());
 					setTimeout(() => {
@@ -41,7 +42,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 					const { accessToken } = data;
 					dispatch(setCredentials({ accessToken }));
 				} catch (err) {
-					console.log(err);
+					// console.log(err);
 				}
 			},
 		}),
