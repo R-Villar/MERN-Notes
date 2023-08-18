@@ -91,6 +91,7 @@ export const Login = () => {
 						required
 					/>
 					<button className='form__submit-button'>Sign In</button>
+                    <p>To test the application login with username and password as admin</p>
 
 					<label htmlFor='persists' className='form__persists'>
 						<input
